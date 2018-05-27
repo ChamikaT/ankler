@@ -1,0 +1,92 @@
+<root>
+  <injury_level value=" Complete tear and loss of integrity of a ligament">
+    <duration value=" 0 to 1 week">
+      <approach>
+        <description> Apply Cold therapy and compression</description>
+        <treatment> Static strengthening exercises flexion and extension mobility exercises  Isometric quadriceps exercises</treatment>
+        <treatment> resistance band exercises for the hamstrings calf raises with both legs  hip abductors and hip extension but not for adduction as this will stress the medial ligament.</treatment>
+      </approach>
+    </duration>
+    <duration value=" 1 to 2 week">
+      <approach>
+        <description> Apply Cold therapy and compression. Manual therapy if required</description>
+        <treatment> Rest from painful activities  continue with stretching and strengthening exercises from phase 1.  Introduce dynamic strengthening exercises such as knee extension,</treatment>
+        <treatment> knee flexicn, half squats, step ups, single leg calf raise, bridging and leg press are suitable exercises if pain allows.  Cross friction massage to the ligament can be performed on alternate days.</treatment>
+      </approach>
+    </duration>
+    <duration value=" 2 to 4 week">
+      <approach>
+        <description> Manual therapy and massage if required</description>
+        <treatment> Aims to maintain full range of motion, equal strength of both legs, return to running and some sports specific training.  continue to apply Cold therapy after training sessions.</treatment>
+        <treatment> Build on dynamic strengthening exercises such as leg extension and leg curls exercises as well as squats to horizontal and lunges.  Increase the intensity, weight lifted and number of repetitions Aim for between 10 and 20 reps. Increase until the strength is equal in both legs</treatment>
+      </approach>
+    </duration>
+    <duration value=" 3 to 6 week">
+      <approach>
+        <description> Manual therapy and massage if required</description>
+        <treatment> Aims to return to full sports specific training and competition.  Sports massage for surrounding muscles on as weekly basis. continue with strength training as above but start to include hopping and bounding exercises.  The athlete should now be ready to gradually return to full sports specific training and then competition.</treatment>
+        <treatment> A knee support or a strapping / taping techniques may provide extra support on return to full training.  however do not become reliant on this. It will weaken the joint. Use initially for Confidence building.</treatment>
+      </approach>
+    </duration>
+  </injury_level>
+  <injury_level value=" incomplete tear of a ligament, with moderate functional impairment">
+    <duration value=" 0 to 1 week">
+      <approach>
+        <description> Apply Cold therapy and compression</description>
+        <treatment> Static strengthening exercises flexion and extension mobility exercises  Isometric quadriceps exercises</treatment>
+        <treatment> resistance band exercises for the hamstrings calf raises with both legs  hip abductors and hip extension but not for adduction as this will stress the medial ligament.</treatment>
+      </approach>
+    </duration>
+    <duration value=" 1 to 2 week">
+      <approach>
+        <description> Apply Cold therapy and compression. Manual therapy if required</description>
+        <treatment> Rest from painful activities  continue with stretching and strengthening exercises from phase 1.  Introduce dynamic strengthening exercises such as knee extension,</treatment>
+        <treatment> knee flexicn, half squats, step ups, single leg calf raise, bridging and leg press are suitable exercises if pain allows.  Cross friction massage to the ligament can be performed on alternate days.</treatment>
+      </approach>
+    </duration>
+    <duration value=" 2 to 4 week">
+      <approach>
+        <description> Manual therapy and massage if required</description>
+        <treatment> Aims to maintain full range of motion, equal strength of both legs, return to running and some sports specific training.  continue to apply Cold therapy after training sessions.</treatment>
+        <treatment> Build on dynamic strengthening exercises such as leg extension and leg curls exercises as well as squats to horizontal and lunges.  Increase the intensity, weight lifted and number of repetitions Aim for between 10 and 20 reps. Increase until the strength is equal in both legs</treatment>
+      </approach>
+    </duration>
+    <duration value=" 3 to 6 week">
+      <approach>
+        <description> Manual therapy and massage if required</description>
+        <treatment> Aims to return to full sports specific training and competition.  Sports massage for surrounding muscles on as weekly basis. continue with strength training as above but start to include hopping and bounding exercises.  The athlete should now be ready to gradually return to full sports specific training and then competition.</treatment>
+        <treatment> A knee support or a strapping / taping techniques may provide extra support on return to full training.  however do not become reliant on this. It will weaken the joint. Use initially for Confidence building.</treatment>
+      </approach>
+    </duration>
+  </injury_level>
+  <injury_level value=" partial tear of a ligament">
+    <duration value=" 0 to 1 week">
+      <approach>
+        <description> Apply Cold therapy and compression</description>
+        <treatment> Static strengthening exercises flexion and extension mobility exercises  Isometric quadriceps exercises</treatment>
+        <treatment> resistance band exercises for the hamstrings calf raises with both legs  hip abductors and hip extension but not for adduction as this will stress the medial ligament.</treatment>
+      </approach>
+    </duration>
+    <duration value=" 1 to 2 week">
+      <approach>
+        <description> Apply Cold therapy and compression. Manual therapy if required</description>
+        <treatment> Rest from painful activities  continue with stretching and strengthening exercises from phase 1.  Introduce dynamic strengthening exercises such as knee extension,</treatment>
+        <treatment>knee fleXion, half squats, step ups, single leg calf raise, bridging and leg press are suitable  exercises if pain allows. Cross friction massage to the ligament can be performed on alternate days.</treatment>
+      </approach>
+    </duration>
+    <duration value=" 3 to 6 week">
+      <approach>
+        <description> Manual therapy and massage if required</description>
+        <treatment> Aims to return to full sports specific training and competition.  Sports massage for surrounding muscles on as weekly basis. continue with strength training as above but start to include hopping and bounding exercises.  The athlete should now be ready to gradually return to full sports specific training and then competition.</treatment>
+        <treatment> A knee support a: a strapping / taping techniques may prcvide extza suppczt on zetuxn to full tzaining.  howeve: do not become zeliant on this. It will weaken the joint. Use initially for confidence building.</treatment>
+      </approach>
+    </duration>
+    <duration value=" 2 to 4 week">
+      <approach>
+        <description> Manual therapy and massage if required</description>
+        <treatment> Aims to maintain full range of motion, equal strength of both legs, return to running and some sports specific training.  continue to apply Cold therapy after training sessions.</treatment>
+        <treatment> Build on dynamic strengthening exercises such as leg extension and leg curls exercises as well as squats to horizontal and lunges.  Increase the intensity, weight lifted and number of repetitions Aim for between 10 and 20 reps. Increase until the strength is equal in both legs</treatment>
+      </approach>
+    </duration>
+  </injury_level>
+</root>
