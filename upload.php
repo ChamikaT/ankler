@@ -4,7 +4,7 @@ $file_uploaded = false;
 if (isset($_POST["submit"]) && !empty($_FILES)) {
     $file_uploaded = true;
     $target_dir = "upload/";
-    $target_file = $target_dir . basename($_FILES["bpmn_diagram"]["name"]);
+    $target_file = $target_dir . 'TestDiagram.png';
     $uploadOk = true;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     // Check if image file is a actual image or fake image
@@ -18,6 +18,8 @@ if (isset($_POST["submit"]) && !empty($_FILES)) {
 
         if ($uploadOk) {
             if (move_uploaded_file($_FILES["bpmn_diagram"]["tmp_name"], $target_file)) {
+                $command = escapeshellcmd('/opt/lampp/htdocs/ankle-injury/upload/roi.py');
+                $output = shell_exec($command);
             } else {
                 $uploadOk = false;
             }
