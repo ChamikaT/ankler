@@ -4,7 +4,7 @@ $level = $_GET['level'];
 $root=simplexml_load_file("upload/treatment.xml") or die("No Data Found");
 $injury_levels = $root->children();
 $injury_level = $injury_levels[(int)$level];
-error_log('level='.$level.' injury_level='.$injury_level['value']);
+//error_log('level='.$level.' injury_level='.$injury_level['value']);
 //print_r($xml);
 ?>
 <html lang="en">

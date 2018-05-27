@@ -17,9 +17,13 @@ if (isset($_POST["submit"]) && !empty($_FILES)) {
         }
 
         if ($uploadOk) {
+            if(file_exists($target_file)) unlink($target_file);
             if (move_uploaded_file($_FILES["bpmn_diagram"]["tmp_name"], $target_file)) {
-                $command = escapeshellcmd('/opt/lampp/htdocs/ankle-injury/upload/roi.py');
+                chmod($target_file, 0777);
+                $command = escapeshellcmd('python /opt/lampp/htdocs/ankle-injury/upload/roi.py');
                 $output = shell_exec($command);
+                error_log($command);
+                error_log($output);
             } else {
                 $uploadOk = false;
             }
