@@ -8,19 +8,22 @@ if (isset($_POST["submit"]) && !empty($_FILES)) {
     $uploadOk = true;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     // Check if image file is a actual image or fake image
-
-    $check = getimagesize($_FILES["bpmn_diagram"]["tmp_name"]);
-    if ($check !== false) {
-        $uploadOk = true;
-    } else {
-        $uploadOk = false;
-    }
-
-    if ($uploadOk) {
-        if (move_uploaded_file($_FILES["bpmn_diagram"]["tmp_name"], $target_file)) {
+    if (!empty($_FILES["bpmn_diagram"]["tmp_name"])) {
+        $check = getimagesize($_FILES["bpmn_diagram"]["tmp_name"]);
+        if ($check !== false) {
+            $uploadOk = true;
         } else {
             $uploadOk = false;
         }
+
+        if ($uploadOk) {
+            if (move_uploaded_file($_FILES["bpmn_diagram"]["tmp_name"], $target_file)) {
+            } else {
+                $uploadOk = false;
+            }
+        }
+    } else {
+        $uploadOk = false;
     }
 }
 ?>
@@ -176,7 +179,7 @@ if (isset($_POST["submit"]) && !empty($_FILES)) {
                                 </div>
                             </div>
                             <div class="col-sm-12">
-                                <button name="submit" type="submit">Upload</button>
+                                <button name="submit" type="submit">Generate XML</button>
                             </div>
                         </form>
                         <!--								<p><a href="signup.html">Don't you have account? Signup!</a></p>-->
