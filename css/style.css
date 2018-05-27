@@ -446,6 +446,9 @@ p {
 .section-padding {
 	padding: 80px 0;
 }
+.section-padding-top {
+	padding: 60px 0 0 0;
+}
 .section-title {
 	margin-bottom:30px;
 	text-align:center;
@@ -454,6 +457,12 @@ p {
 	font-size: 42px;
     font-weight: 300;
     text-transform: uppercase;
+    line-height: 60px;
+	cursor:default;
+}
+.subtitle {
+	font-size: 32px;
+    font-weight: 300;
     line-height: 60px;
 	cursor:default;
 }
@@ -572,12 +581,22 @@ p {
 	top: 0;
 	height: 100%;
 	width: 100%;
+	background: #114e8e;
+	content: "";
+	z-index: -1;
+	opacity: 1;
+}
+.light-overlay:after {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
 	/*background: #114e8e;*/
 	content: "";
 	z-index: -1;
 	opacity: 1;
 }
-
 .footer-overlay {
 	background-size: cover !important;
 	position: relative;

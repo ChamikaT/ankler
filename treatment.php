@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php
+$level = $_GET['level'];
+$root=simplexml_load_file("upload/treatment.xml") or die("No Data Found");
+$injury_levels = $root->children();
+$injury_level = $injury_levels[(int)$level];
+error_log('level='.$level.' injury_level='.$injury_level['value']);
+//print_r($xml);
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -110,497 +118,467 @@
             </div>
         </div><!-- /.Navigation -->
     </header><!-- /Header Area -->
-
+    <section class="chart-area section-padding-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="subtitle"><?= $injury_level['value']?></p>
+                </div>
+            </div>
+        </div>
+    </section>
     <!--Slider Area-->
     <section class="swiper-slider-area">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="slide-inner dark-overlay single-swiper-slider">
-                        <div class="container"style="margin-top: 100px">
-                            <div class="row ">
-                                <div class="col-md-offset-3  col-md-6">
-                                    <div class="section-title">
-                                        <h2 ><span>0 to 1 week</span></h2>
-                                        <p>Apply Cold therapy and compression</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row is-flex" >
-                                <div class="col-md-5 single-treatment dark">
-                                    <div class="single-why-choose">
-<!--                                        <i class="ti-lock"></i>-->
-                                        <h3>Static strengthening exercises flexion and extension mobility exercises Isometric quadriceps exercises</h3>
-<!--                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have-->
-<!--                                            suffered alteration in form</p>-->
-                                    </div>
-                                </div>
+                <?php foreach ($injury_level->children() as $duration) {
+                    $approach = $duration->approach; ?>
 
-                                <div class="col-md-5 single-treatment">
-
-                                    <div class="single-why-choose">
-<!--                                        <i class="ti-mobile"></i>-->
-                                        <h3>resistance band exercises for the hamstrings calf raises with both legs hip abductors and hip extension but not for adduction as this will stress the medial ligament</h3>
-<!--                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have-->
-<!--                                            suffered alteration in form</p>-->
+                    <div class="swiper-slide">
+                        <div class="slide-inner light-overlay single-swiper-slider">
+                            <div class="container"style="margin-top: 20px">
+                                <div class="row ">
+                                    <div class="col-md-offset-3  col-md-6">
+                                        <div class="section-title">
+                                            <h2 ><span><?=$duration['value']?></span></h2>
+                                            <p><?= $approach->description?></p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-5 single-treatment">
-                                    <div class="single-why-choose">
-                                        <!--                                        <i class="ti-lock"></i>-->
-                                        <h3>Static strengthening exercises flexion and extension mobility exercises Isometric quadriceps exercises</h3>
-                                        <!--                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have-->
-                                        <!--                                            suffered alteration in form</p>-->
+                                <div class="row is-flex" >
+                                    <?php
+                                    $count = 1;
+                                    $color=false;
+                                    foreach ($approach->treatment as $treatment) {
+                                        $count +=1; ?>
+                                    <div class="col-md-5 single-treatment <?php if($color){ ?>dark <?php } ?>">
+                                        <div class="single-why-choose">
+                                            <h3><?=$treatment?></h3>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-5 single-treatment dark">
-                                    <div class="single-why-choose">
-                                        <!--                                        <i class="ti-lock"></i>-->
-                                        <h3>Static strengthening exercises flexion and extension mobility exercises Isometric quadriceps exercises</h3>
-                                        <!--                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have-->
-                                        <!--                                            suffered alteration in form</p>-->
-                                    </div>
+                                    <?php if ($count == 2) {
+                                            $color = !$color;
+                                            $count=0;
+                                        }
+                                    }?>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="slide-inner dark-overlay single-swiper-slider" style="background:url(images/banner/6.jpg)">
-                        <div class="display-table">
-                            <div class="table-cell">
-                                <h1>Blockchain</h1>
-                                <h2>leading software platform</h2>
-                                <a class="btn-default btn-big btn-fill" href="index-v2.html">Contact</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="slide-inner dark-overlay single-swiper-slider" style="background:url(images/banner/7.jpg)">
-                        <div class="display-table">
-                            <div class="table-cell">
-                                <h1>Industry</h1>
-                                <h2>Building Crypto</h2>
-                                <a class="btn-default btn-big btn-fill" href="index-v2.html">What we do</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
             <div class="swiper-button-next swiper-button-black"></div>
             <div class="swiper-button-prev swiper-button-black"></div>
         </div>
     </section><!--/Slider Area-->
 
-    <!-- How works Area -->
-    <section class="how-works section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-title">
-                        <h2>How It <span>Works</span></h2>
-                        <p>Sed ut perspiciatis, unde omnis isteew nouat error sit voluptatem</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="how-to-sec">
-                        <div class="how-to">
-                                    <span class="how-icon">
-                                        <i class="ti-user"></i>
-                                    </span>
-                            <h3>Create ID</h3>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                                classical Latin.</p>
-                        </div>
-                        <div class="how-to">
-                                    <span class="how-icon">
-                                        <i class="ti-wallet"></i>
-                                    </span>
-                            <h3>Make Payment</h3>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                                classical Latin.</p>
-                        </div>
-                        <div class="how-to">
-                                    <span class="how-icon">
-                                        <i class="ti-shopping-cart"></i>
-                                    </span>
-                            <h3>Shop now</h3>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                                classical Latin.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section><!-- /How works Area -->
-
-    <!-- Currency Converter Area -->
-    <section class="currency-converter-section section-padding dark-overlay" data-parallax="scroll" data-speed="0.6"
-             data-image-src="images/banner/6.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="chart-map">
-                        <img src="images/map.png" alt=""/>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="currency-converter">
-                        <h2 class="title">Crypto <span>converter</span></h2>
-                        <p>Bitcoin is a form of digital currency, created and held electronically. No one controls it.
-                            Bitcoins aren’t printed, like dollars or euros – they’re produced by people, and increasingly
-                            businesses, running computers all around the world</p>
-                        <script src="js/calc_widget.js"></script>
-                        <a class="btn-default btn-big btn-fill" href="index-v2.html">Exchange now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section><!-- /Currency Converter Area -->
-
-
-    <div class="page-wrapper">
-
-        <!-- Chart Area -->
-        <section class="chart-area section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="chart-content">
-                            <h2 class="title">Chart <span>Content</span></h2>
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a
-                                page when looking at its layout. The point of using Lorem Ipsum is that it has a
-                                more-or-less normal distribution of letters, as opposed to using 'Content here, content
-                                here', making it look like readable English.</p>
-                            <a class="btn-default btn-big btn-fill" href="index-v2.html">Compare now</a>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="bit-chart">
-                            <img src="images/chart.png" alt=""/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section><!-- /Chart Area -->
-
-        <!--Team Area-->
-        <section class="team-area section-padding blue-bg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-offset-3 col-md-6">
-                        <div class="section-title">
-                            <h2>Our <span>Team</span></h2>
-                            <p>There are many variations of passages of Lorem Ipsum available</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="single-member">
-                            <div class="single-team-details">
-                                <img src="images/team/1.jpg" alt=""/>
-                                <div class="team-member-name">
-                                    JAMIE BRYAN
-                                </div>
-                                <div class="team-member-des">
-                                    CEO
-                                </div>
-                            </div>
-                            <div class="single-mem-des">
-                                <p>"There are many variations of passages of Lorem Ipsum available, but the majority have
-                                    suffered alteration."</p>
-                                <a href="index-v2.html"><i class="fa fa-medium"></i></a>
-                                <a href="index-v2.html"><i class="fa fa-linkedin"></i></a>
-                                <a href="index-v2.html"><i class="fa fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="single-member">
-                            <div class="single-team-details">
-                                <img src="images/team/2.jpg" alt=""/>
-                                <div class="team-member-name">
-                                    SHEILA TURNER
-                                </div>
-                                <div class="team-member-des">
-                                    CONSULTANT
-                                </div>
-                            </div>
-                            <div class="single-mem-des">
-                                <p>"There are many variations of passages of Lorem Ipsum available, but the majority have
-                                    suffered alteration."</p>
-                                <a href="index-v2.html"><i class="fa fa-medium"></i></a>
-                                <a href="index-v2.html"><i class="fa fa-linkedin"></i></a>
-                                <a href="index-v2.html"><i class="fa fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="single-member">
-                            <div class="single-team-details">
-                                <img src="images/team/3.jpg" alt=""/>
-                                <div class="team-member-name">
-                                    GRANT WATSON
-                                </div>
-                                <div class="team-member-des">
-                                    ANALYST
-                                </div>
-                            </div>
-                            <div class="single-mem-des">
-                                <p>"There are many variations of passages of Lorem Ipsum available, but the majority have
-                                    suffered alteration."</p>
-                                <a href="index-v2.html"><i class="fa fa-medium"></i></a>
-                                <a href="index-v2.html"><i class="fa fa-linkedin"></i></a>
-                                <a href="index-v2.html"><i class="fa fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="single-member">
-                            <div class="single-team-details">
-                                <img src="images/team/4.jpg" alt=""/>
-                                <div class="team-member-name">
-                                    NEAL HALE
-                                </div>
-                                <div class="team-member-des">
-                                    DEVELOPER
-                                </div>
-                            </div>
-                            <div class="single-mem-des">
-                                <p>"There are many variations of passages of Lorem Ipsum available, but the majority have
-                                    suffered alteration."</p>
-                                <a href="index-v2.html"><i class="fa fa-medium"></i></a>
-                                <a href="index-v2.html"><i class="fa fa-linkedin"></i></a>
-                                <a href="index-v2.html"><i class="fa fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section><!--/Team Area-->
-
-        <!-- Client Review-->
-        <section class="client-reviews section-padding dark-overlay" data-parallax="scroll" data-speed="0.6"
-                 data-image-src="images/banner/11.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="section-title">
-                        <h2><span>Client</span> Reviews</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-offset-2 col-md-8">
-                        <div class="owl-carousel single-review">
-                            <div class="reviews">
-                                <i class="ti-quote-right"></i>
-                                <p>Bitcoin uses peer-to-peer technology to operate with no central authority or banks;
-                                    managing transactions and the issuing of bitcoins is carried out collectively by the
-                                    network.</p>
-                                <strong>Plabon Miah</strong>
-                            </div>
-                            <div class="reviews">
-                                <i class="ti-quote-right"></i>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias non nulla placeat,
-                                    odio, qui dicta alias.</p>
-                                <strong>Steve Husain</strong>
-                            </div>
-                            <div class="reviews">
-                                <i class="ti-quote-right"></i>
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-                                    piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-                                <strong>Progra Lora</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section><!-- /Client Review-->
-
-        <!-- News Area -->
-        <section class="news-area2 section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-offset-3 col-md-6">
-                        <div class="section-title">
-                            <h2>Recent <span>News</span></h2>
-                            <p>There are many variations of passages of Lorem Ipsum available</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="news-boxx owl-carousel">
-                            <a href="index-v2.html">
-                                <div class="news-box2">
-                                    <img class="img-ops" src="images/blog/1.jpg" alt=""/>
-                                    <div class="news-data2">
-                                        <p class="news-cat">Bitcoin</p>
-                                        <img src="images/icons/7.png" alt=""/>
-                                        <h2>Bitcoin rushing!!</h2>
-                                        <p class="news-meta">
-                                            <span>November 7, 2018</span>
-                                            <span><i class="ti-eye"></i> 2046</span>
-                                            <span><i class="ti-comment"></i> 65</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="index-v2.html">
-                                <div class="news-box2">
-                                    <img class="img-ops" src="images/blog/1.jpg" alt=""/>
-                                    <div class="news-data2">
-                                        <p class="news-cat">Lite coin</p>
-                                        <img src="images/icons/8.png" alt=""/>
-                                        <h2>Litecoin boring news</h2>
-                                        <p class="news-meta">
-                                            <span>November 7, 2018</span>
-                                            <span><i class="ti-eye"></i> 2046</span>
-                                            <span><i class="ti-comment"></i> 65</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="index-v2.html">
-                                <div class="news-box2">
-                                    <img class="img-ops" src="images/blog/1.jpg" alt=""/>
-                                    <div class="news-data2">
-                                        <p class="news-cat">Ethereum</p>
-                                        <img src="images/icons/9.png" alt=""/>
-                                        <h2>Litecoin boring news</h2>
-                                        <p class="news-meta">
-                                            <span>November 7, 2018</span>
-                                            <span><i class="ti-eye"></i> 2046</span>
-                                            <span><i class="ti-comment"></i> 65</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="index-v2.html">
-                                <div class="news-box2">
-                                    <img class="img-ops" src="images/blog/1.jpg" alt=""/>
-                                    <div class="news-data2">
-                                        <p class="news-cat">Zcash</p>
-                                        <img src="images/icons/7.png" alt=""/>
-                                        <h2>Litecoin boring news</h2>
-                                        <p class="news-meta">
-                                            <span>November 7, 2018</span>
-                                            <span><i class="ti-eye"></i> 2046</span>
-                                            <span><i class="ti-comment"></i> 65</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section><!-- /News Area -->
+<!--    <!-- How works Area -->
+<!--    <section class="how-works section-padding">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-12">-->
+<!--                    <div class="section-title">-->
+<!--                        <h2>How It <span>Works</span></h2>-->
+<!--                        <p>Sed ut perspiciatis, unde omnis isteew nouat error sit voluptatem</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-12">-->
+<!--                    <div class="how-to-sec">-->
+<!--                        <div class="how-to">-->
+<!--                                    <span class="how-icon">-->
+<!--                                        <i class="ti-user"></i>-->
+<!--                                    </span>-->
+<!--                            <h3>Create ID</h3>-->
+<!--                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of-->
+<!--                                classical Latin.</p>-->
+<!--                        </div>-->
+<!--                        <div class="how-to">-->
+<!--                                    <span class="how-icon">-->
+<!--                                        <i class="ti-wallet"></i>-->
+<!--                                    </span>-->
+<!--                            <h3>Make Payment</h3>-->
+<!--                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of-->
+<!--                                classical Latin.</p>-->
+<!--                        </div>-->
+<!--                        <div class="how-to">-->
+<!--                                    <span class="how-icon">-->
+<!--                                        <i class="ti-shopping-cart"></i>-->
+<!--                                    </span>-->
+<!--                            <h3>Shop now</h3>-->
+<!--                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of-->
+<!--                                classical Latin.</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section><!-- /How works Area -->
+<!---->
+<!--    <!-- Currency Converter Area -->
+<!--    <section class="currency-converter-section section-padding dark-overlay" data-parallax="scroll" data-speed="0.6"-->
+<!--             data-image-src="images/banner/6.jpg">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-6">-->
+<!--                    <div class="chart-map">-->
+<!--                        <img src="images/map.png" alt=""/>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                    <div class="currency-converter">-->
+<!--                        <h2 class="title">Crypto <span>converter</span></h2>-->
+<!--                        <p>Bitcoin is a form of digital currency, created and held electronically. No one controls it.-->
+<!--                            Bitcoins aren’t printed, like dollars or euros – they’re produced by people, and increasingly-->
+<!--                            businesses, running computers all around the world</p>-->
+<!--                        <script src="js/calc_widget.js"></script>-->
+<!--                        <a class="btn-default btn-big btn-fill" href="index-v2.html">Exchange now</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section><!-- /Currency Converter Area -->
+<!---->
+<!---->
+<!--    <div class="page-wrapper">-->
+<!---->
+<!--        <!-- Chart Area -->
+<!--        <section class="chart-area section-padding">-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="chart-content">-->
+<!--                            <h2 class="title">Chart <span>Content</span></h2>-->
+<!--                            <p>It is a long established fact that a reader will be distracted by the readable content of a-->
+<!--                                page when looking at its layout. The point of using Lorem Ipsum is that it has a-->
+<!--                                more-or-less normal distribution of letters, as opposed to using 'Content here, content-->
+<!--                                here', making it look like readable English.</p>-->
+<!--                            <a class="btn-default btn-big btn-fill" href="index-v2.html">Compare now</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <div class="bit-chart">-->
+<!--                            <img src="images/chart.png" alt=""/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section><!-- /Chart Area -->
+<!---->
+<!--        <!--Team Area-->
+<!--        <section class="team-area section-padding blue-bg">-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-offset-3 col-md-6">-->
+<!--                        <div class="section-title">-->
+<!--                            <h2>Our <span>Team</span></h2>-->
+<!--                            <p>There are many variations of passages of Lorem Ipsum available</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-3 col-sm-6 col-xs-12">-->
+<!--                        <div class="single-member">-->
+<!--                            <div class="single-team-details">-->
+<!--                                <img src="images/team/1.jpg" alt=""/>-->
+<!--                                <div class="team-member-name">-->
+<!--                                    JAMIE BRYAN-->
+<!--                                </div>-->
+<!--                                <div class="team-member-des">-->
+<!--                                    CEO-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="single-mem-des">-->
+<!--                                <p>"There are many variations of passages of Lorem Ipsum available, but the majority have-->
+<!--                                    suffered alteration."</p>-->
+<!--                                <a href="index-v2.html"><i class="fa fa-medium"></i></a>-->
+<!--                                <a href="index-v2.html"><i class="fa fa-linkedin"></i></a>-->
+<!--                                <a href="index-v2.html"><i class="fa fa-instagram"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-3 col-sm-6 col-xs-12">-->
+<!--                        <div class="single-member">-->
+<!--                            <div class="single-team-details">-->
+<!--                                <img src="images/team/2.jpg" alt=""/>-->
+<!--                                <div class="team-member-name">-->
+<!--                                    SHEILA TURNER-->
+<!--                                </div>-->
+<!--                                <div class="team-member-des">-->
+<!--                                    CONSULTANT-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="single-mem-des">-->
+<!--                                <p>"There are many variations of passages of Lorem Ipsum available, but the majority have-->
+<!--                                    suffered alteration."</p>-->
+<!--                                <a href="index-v2.html"><i class="fa fa-medium"></i></a>-->
+<!--                                <a href="index-v2.html"><i class="fa fa-linkedin"></i></a>-->
+<!--                                <a href="index-v2.html"><i class="fa fa-instagram"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-3 col-sm-6 col-xs-12">-->
+<!--                        <div class="single-member">-->
+<!--                            <div class="single-team-details">-->
+<!--                                <img src="images/team/3.jpg" alt=""/>-->
+<!--                                <div class="team-member-name">-->
+<!--                                    GRANT WATSON-->
+<!--                                </div>-->
+<!--                                <div class="team-member-des">-->
+<!--                                    ANALYST-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="single-mem-des">-->
+<!--                                <p>"There are many variations of passages of Lorem Ipsum available, but the majority have-->
+<!--                                    suffered alteration."</p>-->
+<!--                                <a href="index-v2.html"><i class="fa fa-medium"></i></a>-->
+<!--                                <a href="index-v2.html"><i class="fa fa-linkedin"></i></a>-->
+<!--                                <a href="index-v2.html"><i class="fa fa-instagram"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-3 col-sm-6 col-xs-12">-->
+<!--                        <div class="single-member">-->
+<!--                            <div class="single-team-details">-->
+<!--                                <img src="images/team/4.jpg" alt=""/>-->
+<!--                                <div class="team-member-name">-->
+<!--                                    NEAL HALE-->
+<!--                                </div>-->
+<!--                                <div class="team-member-des">-->
+<!--                                    DEVELOPER-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="single-mem-des">-->
+<!--                                <p>"There are many variations of passages of Lorem Ipsum available, but the majority have-->
+<!--                                    suffered alteration."</p>-->
+<!--                                <a href="index-v2.html"><i class="fa fa-medium"></i></a>-->
+<!--                                <a href="index-v2.html"><i class="fa fa-linkedin"></i></a>-->
+<!--                                <a href="index-v2.html"><i class="fa fa-instagram"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section><!--/Team Area-->
+<!---->
+<!--        <!-- Client Review-->
+<!--        <section class="client-reviews section-padding dark-overlay" data-parallax="scroll" data-speed="0.6"-->
+<!--                 data-image-src="images/banner/11.jpg">-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="section-title">-->
+<!--                        <h2><span>Client</span> Reviews</h2>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-offset-2 col-md-8">-->
+<!--                        <div class="owl-carousel single-review">-->
+<!--                            <div class="reviews">-->
+<!--                                <i class="ti-quote-right"></i>-->
+<!--                                <p>Bitcoin uses peer-to-peer technology to operate with no central authority or banks;-->
+<!--                                    managing transactions and the issuing of bitcoins is carried out collectively by the-->
+<!--                                    network.</p>-->
+<!--                                <strong>Plabon Miah</strong>-->
+<!--                            </div>-->
+<!--                            <div class="reviews">-->
+<!--                                <i class="ti-quote-right"></i>-->
+<!--                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias non nulla placeat,-->
+<!--                                    odio, qui dicta alias.</p>-->
+<!--                                <strong>Steve Husain</strong>-->
+<!--                            </div>-->
+<!--                            <div class="reviews">-->
+<!--                                <i class="ti-quote-right"></i>-->
+<!--                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a-->
+<!--                                    piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>-->
+<!--                                <strong>Progra Lora</strong>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section><!-- /Client Review-->
+<!---->
+<!--        <!-- News Area -->
+<!--        <section class="news-area2 section-padding">-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-offset-3 col-md-6">-->
+<!--                        <div class="section-title">-->
+<!--                            <h2>Recent <span>News</span></h2>-->
+<!--                            <p>There are many variations of passages of Lorem Ipsum available</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-12">-->
+<!--                        <div class="news-boxx owl-carousel">-->
+<!--                            <a href="index-v2.html">-->
+<!--                                <div class="news-box2">-->
+<!--                                    <img class="img-ops" src="images/blog/1.jpg" alt=""/>-->
+<!--                                    <div class="news-data2">-->
+<!--                                        <p class="news-cat">Bitcoin</p>-->
+<!--                                        <img src="images/icons/7.png" alt=""/>-->
+<!--                                        <h2>Bitcoin rushing!!</h2>-->
+<!--                                        <p class="news-meta">-->
+<!--                                            <span>November 7, 2018</span>-->
+<!--                                            <span><i class="ti-eye"></i> 2046</span>-->
+<!--                                            <span><i class="ti-comment"></i> 65</span>-->
+<!--                                        </p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                            <a href="index-v2.html">-->
+<!--                                <div class="news-box2">-->
+<!--                                    <img class="img-ops" src="images/blog/1.jpg" alt=""/>-->
+<!--                                    <div class="news-data2">-->
+<!--                                        <p class="news-cat">Lite coin</p>-->
+<!--                                        <img src="images/icons/8.png" alt=""/>-->
+<!--                                        <h2>Litecoin boring news</h2>-->
+<!--                                        <p class="news-meta">-->
+<!--                                            <span>November 7, 2018</span>-->
+<!--                                            <span><i class="ti-eye"></i> 2046</span>-->
+<!--                                            <span><i class="ti-comment"></i> 65</span>-->
+<!--                                        </p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                            <a href="index-v2.html">-->
+<!--                                <div class="news-box2">-->
+<!--                                    <img class="img-ops" src="images/blog/1.jpg" alt=""/>-->
+<!--                                    <div class="news-data2">-->
+<!--                                        <p class="news-cat">Ethereum</p>-->
+<!--                                        <img src="images/icons/9.png" alt=""/>-->
+<!--                                        <h2>Litecoin boring news</h2>-->
+<!--                                        <p class="news-meta">-->
+<!--                                            <span>November 7, 2018</span>-->
+<!--                                            <span><i class="ti-eye"></i> 2046</span>-->
+<!--                                            <span><i class="ti-comment"></i> 65</span>-->
+<!--                                        </p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                            <a href="index-v2.html">-->
+<!--                                <div class="news-box2">-->
+<!--                                    <img class="img-ops" src="images/blog/1.jpg" alt=""/>-->
+<!--                                    <div class="news-data2">-->
+<!--                                        <p class="news-cat">Zcash</p>-->
+<!--                                        <img src="images/icons/7.png" alt=""/>-->
+<!--                                        <h2>Litecoin boring news</h2>-->
+<!--                                        <p class="news-meta">-->
+<!--                                            <span>November 7, 2018</span>-->
+<!--                                            <span><i class="ti-eye"></i> 2046</span>-->
+<!--                                            <span><i class="ti-comment"></i> 65</span>-->
+<!--                                        </p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section><!-- /News Area -->
 
         <!-- Footer Area -->
-        <footer class="site-footer footer-v2 footer-overlay"
-                style="background:url('images/banner/11.jpg') no-repeat fixed;">
-            <div class="container">
-                <div class="row">
-                    <div class="site-bottom clearfix">
-                        <div class="col-md-2 col-sm-6 site-bottom-1">
-                            <aside class="widget widget-nav">
-                                <h3 class="widget-title">Pages</h3>
-                                <ul class="menu">
-                                    <li><a href="index-v2.html#">About</a></li>
-                                    <li><a href="index-v2.html#">Services</a></li>
-                                    <li><a href="index-v2.html#">Latest news</a></li>
-                                    <li><a href="index-v2.html#">Team</a></li>
-                                    <li><a href="index-v2.html#">Contact</a></li>
-                                </ul>
-                            </aside>
-                        </div>
-                        <div class="col-md-3 col-sm-6 site-bottom-3">
-                            <aside class="widget widget-nav">
-                                <h3 class="widget-title">Terms</h3>
-                                <ul class="menu">
-                                    <li><a href="index-v2.html#">FAQ’s</a></li>
-                                    <li><a href="index-v2.html#">Privecy & Policy</a></li>
-                                    <li><a href="index-v2.html#">Terms & Conditions</a></li>
-                                    <li><a href="index-v2.html#">Lience Policy</a></li>
-                                    <li><a href="index-v2.html#">404 Policy</a></li>
-                                </ul>
-                            </aside>
-                        </div>
-                        <div class="col-md-4 col-sm-6 site-bottom-2">
-                            <aside class="widget widget-nav">
-                                <h3 class="widget-title">Twitter feed</h3>
-                                <div class="twitter-feed">
-                                    <div class="twitter-feed-icon">
-                                        <i class="fa fa-twitter"></i>
-                                    </div>
-                                    <div class="twitter-feed-content">
-                                        <p>Our every products has a grate discount. Get 50% discount to get started with <a
-                                                    href="index-v2.html">#Wordpress</a> <a
-                                                    href="index-v2.html">#discount</a><br/><a href="index-v2.html">http://t.co/Wa8Hg98Okg</a>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="twitter-feed">
-                                    <div class="twitter-feed-icon">
-                                        <i class="fa fa-twitter"></i>
-                                    </div>
-                                    <div class="twitter-feed-content">
-                                        <p><a href="index-v2.html">@RidoyRajoan</a> Hi Weblos, I need a website to build.
-                                            Can you help me?</p>
-                                    </div>
-                                </div>
-                                <div class="twitter-feed">
-                                    <div class="twitter-feed-icon">
-                                        <i class="fa fa-twitter"></i>
-                                    </div>
-                                    <div class="twitter-feed-content bor-btm-none">
-                                        <p>Themerio: <a href="index-v2.html">#design</a> vs <a href="index-v2.html">#analysis</a>
-                                            which one you will prefer? <br/><a
-                                                    href="index-v2.html">http://t.co/Zo71Uh9ObG</a></p>
-                                    </div>
-                                </div>
-                            </aside>
-                        </div>
-                        <div class="col-md-3 col-sm-6 site-bottom-4">
-                            <aside class="widget widget-text">
-                                <h3 class="widget-title">Newsletter</h3>
-                                <p>Subscribe to our newsletter to receive news, updates, free stuff and new releases by
-                                    email. We don't do spam.</p>
-                                <form class="form-newsletter-ft" action="index-v2.html#" method="get">
-                                    <input name="email" placeholder="Enter your email" required="" type="email">
-                                    <input value="Go" type="submit">
-                                </form>
-                            </aside>
-                        </div>
-                    </div>
-                    <!-- .site-bottom -->
-                    <div class="bottom-footer">
-                        <div class="col-md-6 col-sm-4 pull-right">
-                            <div class="socials">
-                                <ul>
-                                    <li><a href="index-v2.html#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="index-v2.html#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="index-v2.html#"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="index-v2.html#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="index-v2.html#"><i class="fa fa-instagram"></i></a></li>
-                                    <li><a href="index-v2.html#"><i class="fa fa-youtube"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-8">
-                            <div class="copyright">
-                                <p>&copy; 2018 All Rights Reserved Buckion.</p>
-                            </div>
-                        </div>
+<footer class="site-footer footer-v2 footer-overlay"
+        style="background:url('images/banner/11.jpg') no-repeat fixed;">
+    <div class="container">
+        <div class="row">
+            <!--<div class="site-bottom clearfix">-->
+            <!--<div class="col-md-2 col-sm-6 site-bottom-1">-->
+            <!--<aside class="widget widget-nav">-->
+            <!--<h3 class="widget-title">Pages</h3>-->
+            <!--<ul class="menu">-->
+            <!--<li><a href="index.html#">About</a></li>-->
+            <!--<li><a href="index.html#">Services</a></li>-->
+            <!--<li><a href="index.html#">Latest news</a></li>-->
+            <!--<li><a href="index.html#">Team</a></li>-->
+            <!--<li><a href="index.html#">Contact</a></li>-->
+            <!--</ul>-->
+            <!--</aside>-->
+            <!--</div>-->
+            <!--<div class="col-md-3 col-sm-6 site-bottom-3">-->
+            <!--<aside class="widget widget-nav">-->
+            <!--<h3 class="widget-title">Terms</h3>-->
+            <!--<ul class="menu">-->
+            <!--<li><a href="index.html#">FAQ’s</a></li>-->
+            <!--<li><a href="index.html#">Privecy & Policy</a></li>-->
+            <!--<li><a href="index.html#">Terms & Conditions</a></li>-->
+            <!--<li><a href="index.html#">Lience Policy</a></li>-->
+            <!--<li><a href="index.html#">404 Policy</a></li>-->
+            <!--</ul>-->
+            <!--</aside>-->
+            <!--</div>-->
+            <!--<div class="col-md-4 col-sm-6 site-bottom-2">-->
+            <!--<aside class="widget widget-nav">-->
+            <!--<h3 class="widget-title">Twitter feed</h3>-->
+            <!--<div class="twitter-feed">-->
+            <!--<div class="twitter-feed-icon">-->
+            <!--<i class="fa fa-twitter"></i>-->
+            <!--</div>-->
+            <!--<div class="twitter-feed-content">-->
+            <!--<p>Our every products has a grate discount. Get 50% discount to get started with <a-->
+            <!--href="index.html">#Wordpress</a> <a href="index.html">#discount</a><br/><a-->
+            <!--href="index.html">http://t.co/Wa8Hg98Okg</a></p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="twitter-feed">-->
+            <!--<div class="twitter-feed-icon">-->
+            <!--<i class="fa fa-twitter"></i>-->
+            <!--</div>-->
+            <!--<div class="twitter-feed-content">-->
+            <!--<p><a href="index.html">@RidoyRajoan</a> Hi Weblos, I need a website to build. Can-->
+            <!--you help me?</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="twitter-feed">-->
+            <!--<div class="twitter-feed-icon">-->
+            <!--<i class="fa fa-twitter"></i>-->
+            <!--</div>-->
+            <!--<div class="twitter-feed-content bor-btm-none">-->
+            <!--<p>Themerio: <a href="index.html">#design</a> vs <a href="index.html">#analysis</a>-->
+            <!--which one you will prefer? <br/><a href="index.html">http://t.co/Zo71Uh9ObG</a>-->
+            <!--</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</aside>-->
+            <!--</div>-->
+            <!--<div class="col-md-3 col-sm-6 site-bottom-4">-->
+            <!--<aside class="widget widget-text">-->
+            <!--<h3 class="widget-title">Newsletter</h3>-->
+            <!--<p>Subscribe to our newsletter to receive news, updates, free stuff and new releases by-->
+            <!--email. We don't do spam.</p>-->
+            <!--<form class="form-newsletter-ft" action="index.html#" method="get">-->
+            <!--<input name="email" placeholder="Enter your email" required="" type="email">-->
+            <!--<input value="Go" type="submit">-->
+            <!--</form>-->
+            <!--</aside>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!-- .site-bottom -->
+            <div class="bottom-footer">
+                <div class="col-md-6 col-sm-4 pull-right">
+                    <div class="socials">
+                        <ul>
+                            <li><a href="index.html#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="index.html#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="index.html#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="index.html#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="index.html#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="index.html#"><i class="fa fa-youtube"></i></a></li>
+                        </ul>
                     </div>
                 </div>
-                <!-- .row -->
+                <div class="col-md-6 col-sm-8">
+                    <div class="copyright">
+                        <p>&copy; 2018 All Rights Reserved Ankler.</p>
+                    </div>
+                </div>
             </div>
-        </footer><!-- /Footer Area -->
+        </div>
+        <!-- .row -->
+    </div>
+</footer><!-- /Footer Area -->
 
     </div>
 
