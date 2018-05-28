@@ -20,7 +20,7 @@ if (isset($_POST["submit"]) && !empty($_FILES)) {
         if ($uploadOk) {
             if(file_exists($target_file)) unlink($target_file);
             if (move_uploaded_file($_FILES["bpmn_diagram"]["tmp_name"], $target_file)) {
-                echo chmod($target_file, 0777);
+                chmod($target_file, 0777);
                 $command = escapeshellcmd('python C:\xampp\htdocs\chamika_fyp\upload\roi.py');
 
                 $output = shell_exec($command);
@@ -158,7 +158,7 @@ if (isset($_POST["submit"]) && !empty($_FILES)) {
                 <div class="col-md-offset-3 col-md-6">
                     <div class="signup">
                         <form action="upload.php" method="post" enctype="multipart/form-data">
-                            <div  id = 'submit' class="col-sm-12">
+                            <div  id = 'upload_div' class="col-sm-12">
                                 <div class="upload">
                                     <div class="upload-files">
                                         <header>
@@ -175,7 +175,15 @@ if (isset($_POST["submit"]) && !empty($_FILES)) {
                                             <input type="file" multiple="multiple" name="bpmn_diagram"
                                                    id="bpmn_diagram"/>
                                         </div>
-                                        <footer>
+                                        <div id= 'loading_div' class="body">
+                                            <div id="cssload-tetrominos" class="cssload-tetrominos">
+                                                <div class="cssload-tetromino cssload-box1"></div>
+                                                <div class="cssload-tetromino cssload-box2"></div>
+                                                <div class="cssload-tetromino cssload-box3"></div>
+                                                <div class="cssload-tetromino cssload-box4"></div>
+                                            </div>
+                                        </div>
+                                        <footer id="upload_footer">
                                             <div class="divider">
                                                 <span><AR>FILES</AR></span>
                                             </div>
@@ -188,16 +196,9 @@ if (isset($_POST["submit"]) && !empty($_FILES)) {
                                 </div>
                             </div>
                             <div class="col-sm-12">
-                                <button name="submit" type="submit">Generate XML</button>
+                                <button id='submit' name="submit" type="submit">Generate XML</button>
                             </div>
-                            <div id= 'loading_div' class="col-sm-12">
-                              <div  class="cssload-tetrominos">
-                                  <div class="cssload-tetromino cssload-box1"></div>
-                                  <div class="cssload-tetromino cssload-box2"></div>
-                                  <div class="cssload-tetromino cssload-box3"></div>
-                                  <div class="cssload-tetromino cssload-box4"></div>
-                              </div>
-                            </div>
+
                         </form>
                         <!--								<p><a href="signup.html">Don't you have account? Signup!</a></p>-->
                     </div>
@@ -343,10 +344,14 @@ if (isset($_POST["submit"]) && !empty($_FILES)) {
     <?php } ?>
     $(document).ready(function() {
         //$('#loading_div').hide();
-        //$('#submit').hide();
+        $('#loading_div').hide();
         $("#submit").click(function(){
-            $('#submit').hide();
+//            $('#upload_div').hide();
+            $('#drop').hide();
+            $('#upload_footer').hide();
+            $('#submit').value('Processing...');
             $('#loading_div').show();
+
         });
         if (uploadOk == 1) {
             $('.popup-wrap-success').fadeIn(500);

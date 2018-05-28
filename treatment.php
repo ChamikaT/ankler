@@ -108,7 +108,7 @@ $injury_level = $injury_levels[(int)$level];
                                     <li><a href="contact.html">Contact <i class="fa fa-angle-down"
                                                                           aria-hidden="true"></i></a>
                                     </li>
-                                    <li id="login-btn"><a href="signup.html">Login</a></li>
+                                    <li id="login-btn"><a href="login.php">Login</a></li>
                                 </ul>
                             </nav>
                         </div>
